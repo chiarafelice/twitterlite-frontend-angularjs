@@ -14,8 +14,8 @@
 <div data-ng-repeat="message in data">
 	<div class="list-group">
 	  <div href="#" class="list-group-item">
-		<a class="list-group-item-heading" href='#user/{{message.username}}'>@{{message.username}}</a></h4>
-		<p class="list-group-item-text" ng-bind-html="{{message.content}}">{{message.content}}</p>
+        <a class="list-group-item-heading" href='#user/{{message.username}}'>@{{message.username}}</a></h4>
+		<p class="list-group-item-text" ng-bind-html="message.content">{{message.content}}</p>
 	  </div>
 	</div>
 </div>
