@@ -1,8 +1,4 @@
-var myApp = angular.module('myApp', []);
-myApp.factory('Data', function() {
-    return {message: "I'm data from a service"}
-})
-
-function FirstCtrl($scope, Data){
-  $scope.data = Data;
-}
+angular.module('myAppName', [])
+    .controller('FirstCtrl', function($scope) {
+         $scope.data = {message: "Hell544456546546546o"};
+    });

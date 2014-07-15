@@ -14,7 +14,6 @@ module.exports = function(grunt) {
         if (isDevEnv) {
             grunt.task.run('copy:temptobuild');
             grunt.task.run('copy:css');
-            grunt.task.run('copy:js');
         } else {
             grunt.task.run('uglify');
         }
