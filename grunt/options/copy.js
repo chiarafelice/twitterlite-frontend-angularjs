@@ -38,5 +38,16 @@ module.exports = {
                 expand  : true
             }
         ]
+    },
+    css: {
+        files: [
+            {
+                cwd     : 'src/css/',
+                src     : '**/*',
+                dest    : '.build/css/',
+                flatten : false,
+                expand  : true
+            }
+        ]
     }
 };
