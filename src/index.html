@@ -3,24 +3,42 @@
     <title>twitterlite-angular-js</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/custom.css">
-
-<link rel="stylesheet" href="css/bootstrap.css">
-
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    
 </head>
 <body >
 
-    <div class="containter">
-        <div class="bs-component">
-          <div class="navbar navbar-default">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">twitterlite</a>
-            </div>  
+    <div ngApp="myApp">
+
+        <div ng-controller="FirstCtrl">
+            {{data}}
+        </div>
+
+        <div class="containter">
+            <div class="bs-component">
+              <div class="navbar navbar-default">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">twitterlite</a>
+                </div>  
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" id="usernameInput" class="form-control" placeholder="@username">
+                    <input type="text" id="tweetInput" class="form-control" placeholder="#tweet">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" id="tweetButton">></button>
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -33,6 +51,8 @@
     <script src="../bower_components/angular-touch/angular-touch.js"></script>
     <script src="../bower_components/fastclick/lib/fastclick.js"></script>
     <!-- endbuild -->
+<script type="text/javascript" src="js/main.js"></script>
+
 
 </body>
 </html>

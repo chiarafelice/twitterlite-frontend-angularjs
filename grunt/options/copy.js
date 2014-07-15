@@ -49,5 +49,16 @@ module.exports = {
                 expand  : true
             }
         ]
+    },
+    js: {
+        files: [
+            {
+                cwd     : 'src/js/',
+                src     : '**/*',
+                dest    : '.build/js/',
+                flatten : false,
+                expand  : true
+            }
+        ]
     }
 };
