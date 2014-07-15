@@ -8,17 +8,16 @@ var twitterApp = angular.module('twitterApp', [
 twitterApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/chiara', {
-        templateUrl: 'tpl/frontpage.html'
-        // controller: 'TwitterCtrl'
+      when('/index', {
+        templateUrl: 'tpl/frontpage.html',
+         controller: 'TwitterCtrl'
       })
       // .
       // when('/user/:user', {
       //   templateUrl: 'partials/content.html',
       //   controller: 'TwitterCtrl'
       // })
-      .
-      otherwise({
-        redirectTo: '/chiara'
+      .otherwise({
+        redirectTo: '/index'
       });
 }]);

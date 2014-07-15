@@ -11,3 +11,13 @@
         </div>
     </div>
 </div>
+
+
+<div data-ng-repeat="message in data.messages">
+	<div class="list-group">
+	  <div href="#" class="list-group-item">
+		<h4 class="list-group-item-heading" >@{{message.username}}</h4>
+		<p class="list-group-item-text">{{message.content}}</p>
+	  </div>
+	</div>
+</div>
