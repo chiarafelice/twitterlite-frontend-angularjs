@@ -8,31 +8,41 @@ twitterliteControllers.controller('TwitterCtrl', ['$scope', '$http', function ($
 
   	$http.get( 'http://localhost:8080/twitterlite-ws/messages?offset=0&limit=22').success(function( dataCallBack ) {
 		console.log(dataCallBack);
-		$scope.data = {messages:dataCallBack};
+		// $scope.data = {messages:dataCallBack};
+		
+		console.log(dataCallBack.length);
 
-		// var tagslistarr = $scope.data[i].content.split(' ');
-		// var arr=[];
 
-		// $scope.tweet = '';
+		for (var j = 0; j < dataCallBack.length; j++) { 		
 
-		// for(var i = 0; i < tagslistarr.length; i++) {
-		//     if(tagslistarr[i].indexOf('#') == 0){
-		//     	var tag = tagslistarr[i].substring(1);
-		//     	var url = "content.html?hashtag=%22"+tag+"%22";
-		    	
-		//     	$scope.tweet += "<a href=" + url + ">" + tagslistarr[i] + " </a>";
-		        
-		//     } else if(tagslistarr[i].indexOf('@') == 0){
-		//     	var user = tagslistarr[i].substring(1);
+			var tagslistarr = dataCallBack[j].content.split(' ');
+			var arr=[];
 
-		//     	var url = "content.html?user=%22"+user+"%22";
-		//     	$scope.tweet += "<a href=" + url + ">" + tagslistarr[i] + " </a>";
+			$scope.tweet = '';
 
-		//     } else {
-		//     	$scope.tweet += tagslistarr[i] + " ";
-		//     }
-		// }
-	});
+			for(var i = 0; i < tagslistarr.length; i++) {
+			    if(tagslistarr[i].indexOf('#') == 0){
+			    	var tag = tagslistarr[i].substring(1);
+			    	var url = 'hashtag/' + tag ;
+			    	$scope.tweet += "<a href=" + url + ">'" + tagslistarr[i] + "'</a>";	        
+			    } else if(tagslistarr[i].indexOf('@') == 0){
+			    	var user = tagslistarr[i].substring(1);
+			    	var url = 'user/' +user ;
+			    	$scope.tweet += "<a href=" + url + ">'" + tagslistarr[i] + "'</a>";	        
+			    } else {
+			    	$scope.tweet += tagslistarr[i] + ' ';
+			    }
+			}
+
+			$scope.data[j] = {
+				    username: dataCallBack[j].user,
+				    content: $scope.tweet
+			};
+		}
+
+		console.log($scope.data);
+
+});
 
 
 
@@ -64,5 +74,3 @@ function ($scope ,$http,$routeParams) {
 
 }]);
 
-
->>>>>>> 56703b735e98b0dd9a1bf8aa3e14ce81f1442202

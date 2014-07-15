@@ -2,7 +2,8 @@
 
 var twitterApp = angular.module('twitterApp', [
   'ngRoute',
-  'twitterliteControllers'
+  'twitterliteControllers', 
+  'ngSanitize'
 ]);
 
 twitterApp.config(['$routeProvider',
