@@ -12,11 +12,16 @@ twitterApp.config(['$routeProvider',
         templateUrl: 'tpl/frontpage.html',
          controller: 'TwitterCtrl'
       })
-      // .
-      // when('/user/:user', {
-      //   templateUrl: 'partials/content.html',
-      //   controller: 'TwitterCtrl'
-      // })
+       .
+       when('/user/:user', {
+         templateUrl: 'tpl/content.html',
+         controller: 'UserCtrl'
+		})
+		       .
+       when('/hashtag/:hashtag', {
+         templateUrl: 'tpl/content.html',
+         controller: 'HashTagCtrl'
+		})
       .otherwise({
         redirectTo: '/index'
       });
