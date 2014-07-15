@@ -8,10 +8,6 @@ twitterliteControllers.controller('TwitterCtrl', ['$scope', '$http', function ($
 		console.log(dataCallBack);
 		 $scope.data = {messages:dataCallBack};
 	 });
-
-    $scope.data = 'hello chiara';
-    console.log('hello');
-
 }]);
 
 
@@ -22,9 +18,6 @@ function ($scope ,$http,$routeParams) {
 		console.log(dataCallBack);
 		 $scope.data = {messages:dataCallBack};
 	 });
-
-  //  console.log($routeParams.user);
-
 }]);
 
 twitterliteControllers.controller('HashTagCtrl', ['$scope', '$http', '$routeParams',
@@ -34,9 +27,6 @@ function ($scope ,$http,$routeParams) {
 		console.log(dataCallBack);
 		 $scope.data = {messages:dataCallBack};
 	 });
-
-   // console.log($routeParams.hashtag);
-
 }]);
 
 
