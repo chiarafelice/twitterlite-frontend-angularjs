@@ -2,6 +2,7 @@
 
 var twitterApp = angular.module('twitterApp', [
   'ngRoute',
+    'twitterliteServices',
   'twitterliteControllers', 
   'ngSanitize'
 ]);
