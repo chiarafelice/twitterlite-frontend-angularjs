@@ -1,11 +1,12 @@
 <div data-ng-repeat="message in data">
-    <div class="list-group">
-      <div href="#" class="list-group-item">
+	<div class="list-group">
+	  <div href="#" class="list-group-item">
         <a class="list-group-item-heading" href='#user/{{message.username}}'>@{{message.username}}</a></h4>
-            <span class="badge">{{toDate(message.date)}}</span>
-            <div twittlink="{{message.content}}" ></div>
-      </div>
-    </div>
+            <span class="badge">{{message.date}}</span>
+            <p twittlink="{{message.content}}"></div>
+	  </div>
+	</div>
 </div>
+
 
 <button type="button" class="btn btn-default btn-bottom" ng-click="loadTweets()">Load more tweets</button>
