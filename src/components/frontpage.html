@@ -1,21 +1,22 @@
 <div class="container-fluid">
     <div class="form-group">
         <div class="input-group">
-            <input type="text" id="usernameInput" class="form-control" placeholder="@username">
-            <input type="text" id="tweetInput" class="form-control" placeholder="#tweet">
+            <input type="text" id="usernameInput" class="form-control" placeholder="@username" ng-model="username">
+            <input type="text" id="tweetInput" class="form-control" placeholder="#tweet" ng-model="tweet">
             <span class="input-group-btn">
-                <button class="btn btn-default" type="button" id="tweetButton">></button>
+                <button class="btn btn-default" type="button" id="tweetButton" ng-click="postTweet()">></button>
             </span>
         </div>
     </div>
 </div>
 
-
 <div data-ng-repeat="message in data">
 	<div class="list-group">
+
 	  <div href="#" class="list-group-item">
         <a class="list-group-item-heading" href='#user/{{message.username}}'>@{{message.username}}</a></h4>
-		<p class="list-group-item-text" ng-bind-html="message.content">{{message.content}}</p>
+            <span class="badge">{{message.date}}</span>
+            <p class="list-group-item-text" ng-bind-html="message.content">{{message.content}}</p>
 	  </div>
 	</div>
 </div>

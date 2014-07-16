@@ -66,3 +66,9 @@ border-radius: 0 !important;
     margin-right: 25% !important;
     margin-left: 25% !important;
 }
+
+.badge {
+	background-color: #5C3E4E !important; 
+	color: #EEEEEE !important;
+	font-weight: 100 !important;
+}

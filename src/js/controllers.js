@@ -10,8 +10,30 @@ twitterliteControllers.controller('TwitterCtrl', ['$scope', '$http', '$routePara
   		// $scope.data = prepareTweets(dataCallBack);
   		$scope.data = TwitterService.prepareTweets(dataCallBack);	
   	});
-}]);
 
+  	$scope.postTweet = function() {
+
+		$http.post( 'http://localhost:8080/twitterlite-ws/tweets?username=' + $scope.username + '&content=' + $scope.tweet.replace(/#/g,'%23')).success(function( dataCallBack ) {
+			var tweetData = {
+	              username: $scope.username,
+	              content: $scope.tweet
+	        };
+
+	        var x = [];
+
+	        x.push(tweetData);
+	        var preparedTweet = TwitterService.prepareTweets(x);
+
+	        for(var i = 0; i < preparedTweet.length; i++) {
+	        	$scope.data.unshift(preparedTweet[i]);
+	        }
+
+			$scope.username = '';
+			$scope.tweet = '';
+  		});
+    };
+
+}]);
 
 twitterliteControllers.controller('UserCtrl', ['$scope', '$http', '$routeParams', 'TwitterService', function ($scope, $http, $routeParams, TwitterService) {
   	
