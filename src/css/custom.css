@@ -7,7 +7,7 @@
 }
 
 .navbar {
-border-radius: 0 !important;
+	border-radius: 0 !important;
 }
 
 .navbar-default {
@@ -44,6 +44,14 @@ border-radius: 0 !important;
 	border-color: #4BA656 !important;
 	margin-left: 25% !important;
 	border-radius: 4px !important;
+}
+
+.btn-bottom {
+	margin-bottom: 50px !important;
+	margin-top: 25px !important;
+	display: block !important;
+  	margin-left: auto !important;
+  	margin-right: auto !important;
 }
 
 .list-group-item {

@@ -28,10 +28,16 @@ twitterliteServices.factory('TwitterService', function() {
 		            }
 		        }
 
+		        var tweetDate = dataCallBack[j].date;
+
+		        if(tweetDate == null) {
+		        	tweetDate = new Date().getTime() / 1000;
+		        }
+
 		        tweetData[j] = {
 		              username: dataCallBack[j].username,
 		              content: tweet, 
-		              date: moment.unix(dataCallBack[j].date).format('DD/MM/YYYY')
+		              date: moment.unix(tweetDate).format('MMMM Do YYYY, h:mm a')
 		        };
 	      	}            
     		return tweetData;
