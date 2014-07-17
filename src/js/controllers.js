@@ -8,9 +8,10 @@ twitterliteControllers.controller('TwitterCtrl', ['$scope', '$http', '$routePara
 	$scope.offset = 0; 
 	$scope.limit = 10; 
 	$scope.test = 'Hello';
+	$scope.username;
+	$scope.tweet;
 
   	$scope.postTweet = function() {
-
 		$http({
 		    url: 'http://localhost:8080/twitterlite-ws/tweets', 
 		    method: "POST",
@@ -36,9 +37,9 @@ twitterliteControllers.controller('TwitterCtrl', ['$scope', '$http', '$routePara
 				$scope.username = '';
 				$scope.tweet = '';
 
-	  		}).error(function(data, status, headers, config) {
-	  			console.log('Error in POST tweet');
-	    	});
+	  	}).error(function(data, status, headers, config) {
+	  		console.log('Error in POST tweet');
+	    });
     };
 
 	$scope.loadTweets = function() {
@@ -59,7 +60,6 @@ twitterliteControllers.controller('TwitterCtrl', ['$scope', '$http', '$routePara
 	  			console.log('Error in LOAD tweets');
 	    });    
 	};
-
 
 	$scope.loadTweets();
 
@@ -122,7 +122,6 @@ twitterliteControllers.controller('MentionCtrl', ['$scope', '$http', '$routePara
 
 	$scope.loadTweets();
 }]);
-
 
 twitterliteControllers.controller('HashTagCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
  	$scope.data = [];
