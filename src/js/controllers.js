@@ -7,11 +7,18 @@ twitterliteControllers.controller('TwitterCtrl', ['$scope', '$http', '$routePara
 	$scope.data = [];
 	$scope.offset = 0; 
 	$scope.limit = 10; 
+	$scope.test = 'Hello';
 
   	$scope.postTweet = function() {
 
-		$http.post( 'http://localhost:8080/twitterlite-ws/tweets?username=' + $scope.username + '&content=' + $scope.tweet.replace(/#/g,'%23'))
-			.success(function( dataCallBack ) {
+		$http({
+		    url: 'http://localhost:8080/twitterlite-ws/tweets', 
+		    method: "POST",
+		    params: {
+		    	username: $scope.username,
+		    	content: $scope.tweet.replace(/#/g,'%23')
+		    }
+		 }).success(function( dataCallBack ) {
 				
 				var tweetData = {
 		              username: $scope.username,
@@ -30,78 +37,120 @@ twitterliteControllers.controller('TwitterCtrl', ['$scope', '$http', '$routePara
 				$scope.tweet = '';
 
 	  		}).error(function(data, status, headers, config) {
-	  			console.log("error in post tweet");
+	  			console.log('Error in POST tweet');
 	    	});
     };
 
-    $scope.loadTweets = function() {
-		$http.get( 'http://localhost:8080/twitterlite-ws/messages?offset='+ $scope.offset + '&limit=' + $scope.limit).success(function( dataCallBack ) {
-
+	$scope.loadTweets = function() {
+		$http({
+		    url: 'http://localhost:8080/twitterlite-ws/messages', 
+		    method: "GET",
+		    params: {
+		    	offset: $scope.offset,
+		    	limit : $scope.limit
+		    }
+		 }).success(function( dataCallBack ) {
 	  		for(var i = 0; i < dataCallBack.length; i++) {
 	        	$scope.data.push(dataCallBack[i]);
 	        }
-
 	  		$scope.offset += $scope.limit;
-	  	});    
+
+	  	}).error(function(data, status, headers, config) {
+	  			console.log('Error in LOAD tweets');
+	    });    
 	};
+
 
 	$scope.loadTweets();
 
-	$scope.toDate = function(timestamp) {
-		if(timestamp) {
-			return moment.unix(timestamp).format('MMMM Do YYYY, h:mm a');
-		} else {
-			return '..now';
-		}
-	};
 }]);
 
-twitterliteControllers.controller('UserCtrl', ['$scope', '$http', '$routeParams', 'TwitterService', function ($scope, $http, $routeParams, TwitterService) {
+twitterliteControllers.controller('UserCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
   	
   	$scope.data = [];
 	$scope.offset = 0; 
 	$scope.limit = 10; 
 
   	$scope.loadTweets = function() {
-	  	$http.get( 'http://localhost:8080/twitterlite-ws/messages/user?user='+$routeParams.user+'&offset='+ $scope.offset + '&limit=' + $scope.limit).success(function( dataCallBack ) {
+	  	$http({
+		    url: 'http://localhost:8080/twitterlite-ws/messages/user', 
+		    method: "GET",
+		    params: {
+		    	user: $routeParams.user,
+		    	offset: $scope.offset,
+		    	limit : $scope.limit
+		    }
+		 }).success(function( dataCallBack ) {
 
 	  		for(var i = 0; i < dataCallBack.length; i++) {
 	        	$scope.data.push(dataCallBack[i]);
 	        }
 
 	  		$scope.offset += $scope.limit;
-		});
+		}).error(function(data, status, headers, config) {
+	  		console.log('Error in GET USER request');
+	    });
 	};
 
 	$scope.loadTweets();
-
-	$scope.toDate = function(timestamp) {
-		return moment.unix(timestamp).format('MMMM Do YYYY, h:mm a');
-	}
-
 }]);
 
-
-twitterliteControllers.controller('HashTagCtrl', ['$scope', '$http', '$routeParams', 'TwitterService', function ($scope, $http, $routeParams, TwitterService) {
+twitterliteControllers.controller('MentionCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
  	$scope.data = [];
   	$scope.offset = 0; 
 	$scope.limit = 10; 
 
   	$scope.loadTweets = function() {
-  		$http.get( 'http://localhost:8080/twitterlite-ws/messages/hashtags?hashtags='+$routeParams.hashtag+'&offset='+ $scope.offset + '&limit=' + $scope.limit).success(function( dataCallBack ) {
-
+  		$http({
+		    url: 'http://localhost:8080/twitterlite-ws/messages/mention', 
+		    method: "GET",
+		    params: {
+		    	mention: $routeParams.mention,
+		    	offset: $scope.offset,
+		    	limit : $scope.limit
+		    }
+		 }).success(function( dataCallBack ) {
 	  		for(var i = 0; i < dataCallBack.length; i++) {
 	        	$scope.data.push(dataCallBack[i]);
 	        }
 
 	  		$scope.offset += $scope.limit;
-		});
+		}).error(function(data, status, headers, config) {
+	  		console.log('Error in GET MENTION request');
+	    });
+	};
+
+	$scope.loadTweets();
+}]);
+
+
+twitterliteControllers.controller('HashTagCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
+ 	$scope.data = [];
+  	$scope.offset = 0; 
+	$scope.limit = 10; 
+
+  	$scope.loadTweets = function() {
+
+		$http({
+		    url: 'http://localhost:8080/twitterlite-ws/messages/hashtags', 
+		    method: "GET",
+		    params: {
+		    	hashtags: $routeParams.hashtag,
+		    	offset: $scope.offset,
+		    	limit : $scope.limit
+		    }
+		 }).success(function( dataCallBack ) {
+
+	  		for(var i = 0; i < dataCallBack.length; i++) {
+	        	$scope.data.push(dataCallBack[i]);
+	        }
+	  		$scope.offset += $scope.limit;
+		}).error(function(data, status, headers, config) {
+	  		console.log('Error in GET HASHTAGS request');
+	    });
 	};
 
 	$scope.loadTweets();
 
-	$scope.toDate = function(timestamp) {
-		return moment.unix(timestamp).format('MMMM Do YYYY, h:mm a');
-	}
 }]);
 

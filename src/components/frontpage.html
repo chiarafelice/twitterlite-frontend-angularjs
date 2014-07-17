@@ -14,12 +14,11 @@
     <div class="list-group">
       <div href="#" class="list-group-item">
         <a class="list-group-item-heading" href='#user/{{message.username}}'>@{{message.username}}</a></h4>
-            <span class="badge">{{toDate(message.date)}}</span>
+            <!-- <span class="badge">{{toDate(message.date)}}</span> -->
+            <span class="badge" am-time-ago="message.date" am-preprocess="unix"></span>
             <div twittlink="{{message.content}}"></div>
       </div>
     </div>
 </div>
 
 <button type="button" class="btn btn-default btn-bottom" ng-click="loadTweets()">Load more tweets</button>
-
-<superman></superman>

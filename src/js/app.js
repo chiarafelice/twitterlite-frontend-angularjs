@@ -2,34 +2,34 @@
 
 var twitterApp = angular.module('twitterApp', [
   'ngRoute',
-  'twitterliteServices',
+  // 'twitterliteServices',
   'twitterliteControllers', 
   'twitterliteDirectives',
   'twitterliteFilters',
-  'ngSanitize'
+  'angularMoment'
 ]);
 
 twitterApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/index', {
-        templateUrl: 'tpl/frontpage.html',
-         controller: 'TwitterCtrl'
+          templateUrl: 'tpl/frontpage.html',
+          controller: 'TwitterCtrl'
       }).
-       when('/user/:user', {
-         templateUrl: 'tpl/content.html',
-         controller: 'UserCtrl'
-		}).
-       when('/hashtag/:hashtag', {
-         templateUrl: 'tpl/content.html',
-         controller: 'HashTagCtrl'
-		}).
-       when('/linkify', {
-         templateUrl: 'tpl/linkify.html',
-         controller: 'TwitterCtrl'
-    }).
-       otherwise({
-        redirectTo: '/index'
+        when('/user/:user', {
+          templateUrl: 'tpl/content.html',
+          controller: 'UserCtrl'
+	   	}).
+        when('/hashtag/:hashtag', {
+          templateUrl: 'tpl/content.html',
+          controller: 'HashTagCtrl'
+      }).
+        when('/mention/:mention', {
+          templateUrl: 'tpl/content.html',
+          controller: 'MentionCtrl'
+		  }).
+        otherwise({
+          redirectTo: '/index'
       });
 }]);
 
