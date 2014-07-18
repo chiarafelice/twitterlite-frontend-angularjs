@@ -2,7 +2,6 @@
 
 var twitterApp = angular.module('twitterApp', [
   'ngRoute',
-  // 'twitterliteServices',
   'twitterliteControllers', 
   'twitterliteDirectives',
   'twitterliteFilters',

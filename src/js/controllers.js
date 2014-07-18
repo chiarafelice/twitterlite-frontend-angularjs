@@ -14,7 +14,7 @@ twitterliteControllers.controller('TwitterCtrl', ['$scope', '$http', '$routePara
   	$scope.postTweet = function() {
 		$http({
 		    url: 'http://localhost:8080/twitterlite-ws/tweets', 
-		    method: "POST",
+		    method: 'POST',
 		    params: {
 		    	username: $scope.username,
 		    	content: $scope.tweet.replace(/#/g,'%23')
@@ -22,8 +22,8 @@ twitterliteControllers.controller('TwitterCtrl', ['$scope', '$http', '$routePara
 		 }).success(function( dataCallBack ) {
 				
 				var tweetData = {
-		              username: $scope.username,
-		              content: $scope.tweet
+					username: $scope.username,
+					content: $scope.tweet
 		        };
 
 		        var x = [];
@@ -33,6 +33,8 @@ twitterliteControllers.controller('TwitterCtrl', ['$scope', '$http', '$routePara
 		        for(var i = 0; i < x.length; i++) {
 		        	$scope.data.unshift(x[i]);
 		        }
+
+		        $scope.offset += 1;
 
 				$scope.username = '';
 				$scope.tweet = '';
@@ -45,7 +47,7 @@ twitterliteControllers.controller('TwitterCtrl', ['$scope', '$http', '$routePara
 	$scope.loadTweets = function() {
 		$http({
 		    url: 'http://localhost:8080/twitterlite-ws/messages', 
-		    method: "GET",
+		    method: 'GET',
 		    params: {
 		    	offset: $scope.offset,
 		    	limit : $scope.limit
@@ -57,7 +59,7 @@ twitterliteControllers.controller('TwitterCtrl', ['$scope', '$http', '$routePara
 	  		$scope.offset += $scope.limit;
 
 	  	}).error(function(data, status, headers, config) {
-	  			console.log('Error in LOAD tweets');
+	  		console.log('Error in LOAD tweets');
 	    });    
 	};
 
@@ -74,7 +76,7 @@ twitterliteControllers.controller('UserCtrl', ['$scope', '$http', '$routeParams'
   	$scope.loadTweets = function() {
 	  	$http({
 		    url: 'http://localhost:8080/twitterlite-ws/messages/user', 
-		    method: "GET",
+		    method: 'GET',
 		    params: {
 		    	user: $routeParams.user,
 		    	offset: $scope.offset,
@@ -87,6 +89,7 @@ twitterliteControllers.controller('UserCtrl', ['$scope', '$http', '$routeParams'
 	        }
 
 	  		$scope.offset += $scope.limit;
+
 		}).error(function(data, status, headers, config) {
 	  		console.log('Error in GET USER request');
 	    });
@@ -98,12 +101,12 @@ twitterliteControllers.controller('UserCtrl', ['$scope', '$http', '$routeParams'
 twitterliteControllers.controller('MentionCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
  	$scope.data = [];
   	$scope.offset = 0; 
-	$scope.limit = 10; 
+	$scope.limit = 10;
 
   	$scope.loadTweets = function() {
   		$http({
 		    url: 'http://localhost:8080/twitterlite-ws/messages/mention', 
-		    method: "GET",
+		    method: 'GET',
 		    params: {
 		    	mention: $routeParams.mention,
 		    	offset: $scope.offset,
@@ -132,7 +135,7 @@ twitterliteControllers.controller('HashTagCtrl', ['$scope', '$http', '$routePara
 
 		$http({
 		    url: 'http://localhost:8080/twitterlite-ws/messages/hashtags', 
-		    method: "GET",
+		    method: 'GET',
 		    params: {
 		    	hashtags: $routeParams.hashtag,
 		    	offset: $scope.offset,
