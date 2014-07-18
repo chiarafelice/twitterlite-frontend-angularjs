@@ -10,9 +10,9 @@
     </form>
 </div>
 
-<div data-ng-repeat="message in data">
+<div ng-repeat="message in data">
     <div class="list-group">
-      <div href="#" class="list-group-item">
+      <div class="list-group-item">
         <a class="list-group-item-heading" href='#user/{{message.username}}'>@{{message.username}}</a></h4>
             <!-- <span class="badge">{{toDate(message.date)}}</span> -->
             <span class="badge" am-time-ago="message.date" am-preprocess="unix"></span>
