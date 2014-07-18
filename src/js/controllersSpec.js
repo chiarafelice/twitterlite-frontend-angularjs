@@ -339,7 +339,39 @@ describe('Loading tweets which contain a specified hashtag', function() {
 
 
 
-describe('Loading tweets which contain a hashtag', function() {
+describe('filter', function () {
+    beforeEach(module('twitterApp'));
 
+    it('should add no anchor tag', inject(function (linkedFilter) {
+        var tweet = "Hello no hashtag";
+        expect(linkedFilter(tweet)).toEqual(tweet);
+    }));
+
+    it('should add an anchor tag around words which are hashtagged: one tag', inject(function (linkedFilter) {
+        var tweet = "Hello #ixaris";
+        expect(linkedFilter(tweet)).toEqual('Hello <a href="#/hashtag/ixaris">#ixaris</a>');
+    }));
+
+    it('should add an anchor tag around words which are hashtagged: >1 tag', inject(function (linkedFilter) {
+        var tweet = "Hello #ixaris in #san #gwann";
+        expect(linkedFilter(tweet)).toEqual('Hello <a href="#/hashtag/ixaris">#ixaris</a> in <a href="#/hashtag/san">#san</a> <a href="#/hashtag/gwann">#gwann</a>');
+    }));
+
+    it('should add an anchor tag around mentioned users', inject(function (linkedFilter) {
+        var tweet = "Hello @chiara";
+        expect(linkedFilter(tweet)).toEqual('Hello <a href="#/mention/chiara">@chiara</a>');
+    }));
+
+    it('should add an anchor tag around mentioned users: >1 mention', inject(function (linkedFilter) {
+        var tweet = "Hello @chiara and @thomas";
+        expect(linkedFilter(tweet)).toEqual('Hello <a href="#/mention/chiara">@chiara</a> and <a href="#/mention/thomas">@thomas</a>');
+    }));
+
+    it('should add anchor tags around # and @', inject(function (linkedFilter) {
+        var tweet = "Hello it is @chiara working without @thom as he is in #rome eating #icecream";
+        expect(linkedFilter(tweet)).toEqual('Hello it is <a href="#/mention/chiara">@chiara</a> working without <a href="#/mention/thom">@thom</a> as he is in <a href="#/hashtag/rome">#rome</a> eating <a href="#/hashtag/icecream">#icecream</a>');
+    }));
 
 });
+
+
