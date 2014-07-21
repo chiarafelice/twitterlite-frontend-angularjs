@@ -47,7 +47,7 @@ twitterliteServices.service('tweets', function($http) {
                 offset : offset,
                 limit : limit
             }
-         })
+         });
     }
 
     function getAllHashtagTweets(hashtag, offset, limit) {
@@ -59,7 +59,7 @@ twitterliteServices.service('tweets', function($http) {
                 offset : offset,
                 limit : limit
             }
-         })
+         });
     }
 
     return {
